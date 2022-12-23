@@ -1,12 +1,16 @@
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { GlobalRoutes } from "./Components/Routes";
 import './App.css'
-import Products from './Components/Products'
 
 function App() {
   return (
-    <div className="App">
-      <Products/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <GlobalRoutes/>
+      </div>
+    </BrowserRouter>
   )
 }
 
-export default App
+export default App;

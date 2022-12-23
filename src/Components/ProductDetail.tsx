@@ -1,15 +1,17 @@
-import { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { ProductDetailResponse, ProductDetailResponseDefault } from "../Models/ProductDetailResponse";
 import { currency, getProductById } from "../products";
 
-export default function ProductDetail({id}: {id: number}) {
+export default function ProductDetail() {
+  const { productId: id } = useParams();
   const [product, setProduct] = useState<ProductDetailResponse>(ProductDetailResponseDefault);
   const [isLoading, setIsLoading] = useState(true);
   const addToCart = useRef(null);
 
   useEffect(() => {
     if (id) {
-      getProductById(id)
+      getProductById(parseInt(id))
         .then(setProduct)
         .finally(() => setIsLoading(false));
     }
