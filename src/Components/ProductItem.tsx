@@ -3,17 +3,30 @@ import { ProductResponse } from "../Models/ProductResponse";
 import { currency } from "../products";
 import { AllowedDomainType } from "./Routes";
 
-export default function ProductItem({product }: { product: ProductResponse}) {
+export default function ProductItem({ product }: { product: ProductResponse}) {
   const addProduct = (product: ProductResponse) => {
-    const detail = {
-        newProduct: {
-          id: product.id,
-          price: product.price,
-          quantity: 1
+    const message = {
+        action: "ADD_PRODUCT",
+        payload: {
+          newProduct: {
+            id: product.id,
+            price: product.price,
+            quantity: 1
+          }
         }
     };
 
-    parent.postMessage(detail, AllowedDomainType.development);
+    parent.postMessage(message, AllowedDomainType.development);
+  };
+
+  const onDetailClick = (id: ProductResponse["id"]) => {
+    const message = {
+      action: "SHOW_DETAIL",
+      payload: {
+        id
+      }
+    }
+    parent.postMessage(message, AllowedDomainType.development)
   };
 
   return (
@@ -22,7 +35,7 @@ export default function ProductItem({product }: { product: ProductResponse}) {
         className="w-full h-48"
         src={product.thumbnail}
         alt={product.title}
-        // onClick={onDetailClick}
+        onClick={() => onDetailClick(product.id)}
         />
         <div className="px-6 py-4 h-52">
         <div className="flex justify-between items-center">
