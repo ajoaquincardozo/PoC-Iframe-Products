@@ -1,6 +1,6 @@
-const API_SERVER = "https://poc-module-federation-app-server.vercel.app" //http://localhost:8081"
+const API_SERVER = "https://poc-module-federation-app-server.vercel.app" //http://localhost:8081 //https://poc-module-federation-app-server.vercel.app
 
-const getCookie = (name: string) => {
+export const getCookie = (name: string) => {
     const cookieByName: Record<string, string> = document
         .cookie
         .split(";")
