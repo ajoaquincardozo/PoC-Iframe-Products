@@ -16,7 +16,7 @@ export default function ProductItem({ product }: { product: ProductResponse}) {
         }
     };
 
-    parent.postMessage(message, AllowedDomainType.development);
+    parent.postMessage(message, AllowedDomainType.production);
   };
 
   const onDetailClick = (id: ProductResponse["id"]) => {
@@ -26,7 +26,7 @@ export default function ProductItem({ product }: { product: ProductResponse}) {
         id
       }
     }
-    parent.postMessage(message, AllowedDomainType.development)
+    parent.postMessage(message, AllowedDomainType.production)
   };
 
   return (
