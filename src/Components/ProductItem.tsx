@@ -1,22 +1,20 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ProductResponse } from "../Models/ProductResponse";
 import { currency } from "../products";
+import { AllowedDomainType } from "./Routes";
 
 export default function ProductItem({product }: { product: ProductResponse}) {
-//   const buttonAddProductRef = useRef<HTMLButtonElement>();
+  const addProduct = (product: ProductResponse) => {
+    const detail = {
+        newProduct: {
+          id: product.id,
+          price: product.price,
+          quantity: 1
+        }
+    };
 
-//   const addProduct = (product) => {
-//     const detail = {
-//         newProduct: {
-//           id: product.id,
-//           price: product.price,
-//           quantity: 1
-//         }
-//     };
-
-//     const customEvent = new CustomEvent("add-product", { bubbles: true, detail });
-//     buttonAddProductRef.current.dispatchEvent(customEvent);
-//   };
+    parent.postMessage(detail, AllowedDomainType.development);
+  };
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -40,8 +38,7 @@ export default function ProductItem({product }: { product: ProductResponse}) {
         <div className="px-6 pt-4 pb-6">
         <button
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            // onClick={() => addProduct(product)}
-            // ref={buttonAddProductRef}
+            onClick={() => addProduct(product)}
         >
             <p className="text-base">Comprar</p>
         </button>
