@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Navigation, AllowedDomains } from ".";
+import { Navigation, AllowedDomains, AllowedDomainType } from ".";
 
 export const RoutingListener = () => {
   useEffect(() => {
     window.addEventListener('message', function (event) {
-      console.log("Origin recibido", event.origin);
+      parent.postMessage({name: "log", origin: event.origin, data: event.data }, AllowedDomainType.production);
 
       if (AllowedDomains.includes(event.origin)){
         const data: Navigation = JSON.parse(event.data);
