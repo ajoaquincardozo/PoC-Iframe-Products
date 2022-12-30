@@ -8,11 +8,11 @@ export type Navigation = {
 }
 
 export enum AllowedDomainType {
-    development = "http://localhost:8082",
+    development = "https://localhost:8082",
     production = "https://poc-iframe-app-shell.vercel.app"
 }
 
 export const AllowedDomains = [
-    "http://localhost:8082",
+    "https://localhost:8082",
     "https://poc-iframe-app-shell.vercel.app"
 ]
